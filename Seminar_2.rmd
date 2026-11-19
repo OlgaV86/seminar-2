@@ -14,3 +14,72 @@ library(readr)
 library(ggplot2)
 library(knitr)
 ```
+```{r}
+lul_d <- read_csv(
+  '../data/life-under-lockdown-wave2-extract.csv',
+  col_types = cols(
+    col_integer(),
+    col_factor(),
+    col_factor(levels = c(
+      'Nothing at all',
+      'Not very much',
+      'A fair amount',
+      'A great deal'
+    )),
+    col_integer()
+  )
+)
+```
+#Descriptive statistics
+```{r}
+lul_d %>%
+  ggplot(
+    aes(x=gender)
+  )+
+  geom_bar()
+```
+```{r}
+lul_d %>%
+  count(gender) %>%
+  kable()
+```
+```{r}
+lul_d %>%
+  ggplot(
+    aes(x=beliefs)
+  )+
+  geom_histogram(binwidth = 1)
+```
+```{r}
+lul_d %>%
+  summarise(
+    n=n(),
+    Mdn=median(beliefs),
+    M=mean(beliefs),
+    SD=sd(beliefs)
+  ) %>%
+  kable(digits = 2)
+```
+#Hypothesis
+Gender is associated with mean number of misinformation beliefs
+#Analysis
+```{r}
+lul_d %>%
+  group_by(gender) %>%
+  summarise(
+    n=n(),
+    Mdn=median(beliefs),
+    M=mean(beliefs),
+    SD=sd(beliefs)
+  ) %>%
+  kable(digits = 2)
+```
+```{r}
+lul_d %>%
+  filter(gender!='In another way')%>%
+  t.test(
+    formula=beliefs~gender,
+    var.equal = FALSE,
+    data=.
+  )
+```

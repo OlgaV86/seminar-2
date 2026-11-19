@@ -1,0 +1,16 @@
+---
+title: "Seminar 2"
+output: html_document
+date: "2026-11-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(knitr)
+```

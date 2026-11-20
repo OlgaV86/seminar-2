@@ -83,3 +83,4 @@ lul_d %>%
     data=.
   )
 ```
+There were too few people who identified in another way for them to be included in the full analysis. Males had slightly more misinformation beliefs (M = 0.73, SD = 1.13) than females (M = 0.61, SD = 1.05), but this was not statistically significant, t(494.31) = 1.201, p = .230.
